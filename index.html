@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Irving & Norma Wedding</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="Assets/Imagenes/cosito.png">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Matter.js para físicas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Pantalla de Bienvenida (Sobre) -->
+    <div id="envelope-screen" class="envelope-screen">
+        <img src="Assets/Imagenes/Sobre.png" alt="Sobre" class="envelope-img">
+        <p class="scroll-instruction">Desliza hacia abajo o haz clic</p>
+    </div>
+
+    <div class="layout-container" id="main-content">
+
+        <!-- Columna Izquierda: Animación de hojas (Solo PC) -->
+        <aside class="side-column left-column" id="left-leaves">
+            <!-- Las hojas se generarán dinámicamente con JS -->
+        </aside>
+
+        <!-- Columna Central: Contenido de la Invitación -->
+        <main class="center-column">
+
+            <section class="hero-section content-section fade-in">
+                <!-- Video interactivo con miniatura -->
+                <div class="main-video-wrapper">
+                    <div class="main-video-container" id="main-video-container">
+                        <img src="Assets/Imagenes/NIcover.png" alt="Cover Video" class="video-thumbnail"
+                            id="video-thumb">
+                        <video id="hero-video" controls muted playsinline preload="metadata">
+                            <!-- Pon aquí la ruta real de tu video -->
+                            <source src="Assets/Video/video3_1.mp4" type="video/mp4">
+                            Tu navegador no soporta el formato de video.
+                        </video>
+                    </div>
+                    <!-- Imagen del reproductor -->
+                    <img src="Assets/Imagenes/reproductor-06.png" alt="Reproductor" class="player-image" id="music-btn"
+                        style="cursor: pointer;">
+                </div>
+
+                <h1 style="display:none;">NORMA And IRVING</h1>
+                <!-- Oculto por SEO o accesibilidad si se desea, o simplemente removido -->
+                <img src="Assets/Imagenes/Marry.png" alt="Marry" class="marry-image fade-in">
+                <img src="Assets/Imagenes/NIw.png" alt="Norma and Irving" class="niw-image fade-in">
+            </section>
+
+            <!-- Imagen STD con Contador -->
+            <section class="countdown-section fade-in">
+                <div class="std-wrapper">
+                    <img src="Assets/Imagenes/STD.png" alt="Save The Date" class="full-width-img std-bg">
+                    <div class="countdown-overlay" id="countdown">
+                        <div class="faltan-title">FALTAN</div>
+                        <div class="countdown-numbers">
+                            <div class="time-box">
+                                <span class="time-value" id="days">00</span>
+                                <span class="time-label">días</span>
+                            </div>
+                            <span class="time-sep">:</span>
+                            <div class="time-box">
+                                <span class="time-value" id="hours">00</span>
+                                <span class="time-label">hrs</span>
+                            </div>
+                            <span class="time-sep">:</span>
+                            <div class="time-box">
+                                <span class="time-value" id="minutes">00</span>
+                                <span class="time-label">min</span>
+                            </div>
+                            <span class="time-sep">:</span>
+                            <div class="time-box">
+                                <span class="time-value" id="seconds">00</span>
+                                <span class="time-label">seg</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Imagen Detalles (DE) -->
+                <div class="de-wrapper">
+                    <img src="Assets/Imagenes/DE.png" alt="Detalles de Ubicación" class="full-width-img de-bg">
+
+                    <!-- Botones de Ubicación -->
+                    <a href="https://maps.google.com/?q=Parroquia+Cristo+Rey+Villa+de+Real+Tijuana" target="_blank"
+                        class="de-btn btn-ceremonia">UBICACIÓN</a>
+                    <a href="https://maps.google.com/?q=Hacienda+Santa+Mónica+Tijuana" target="_blank"
+                        class="de-btn btn-recepcion">UBICACIÓN</a>
+                </div>
+
+                <!-- Nuevas imágenes en orden: Itinerario, E, T, IF -->
+                <img src="Assets/Imagenes/Itinerario.png" alt="Itinerario" class="full-width-img">
+                <img src="Assets/Imagenes/E.png" alt="E" class="full-width-img">
+                <img src="Assets/Imagenes/T.png" alt="T" class="full-width-img">
+                <img src="Assets/Imagenes/IF.png" alt="IF" class="full-width-img">
+            </section>
+
+
+            <section class="rsvp-section content-section fade-in">
+                <h2>Confirma tu asistencia</h2>
+                <p class="rsvp-instruction">Déjanos saber cuántos nos acompañarán.</p>
+
+                <form id="rsvp-form" class="rsvp-form">
+                    <div class="input-group">
+                        <label for="guest-name">Nombre de la familia / invitado:</label>
+                        <input type="text" id="guest-name" placeholder="Ej. Familia Pérez" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="guest-count">¿Cuántos asisten?</label>
+                        <input type="number" id="guest-count" min="1" max="10" value="1" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Confirmar Asistencia</button>
+                </form>
+
+                <div class="jar-container">
+                    <p class="jar-title">Quienes nos acompañarán:</p>
+                    <p id="total-guests-counter" class="guests-counter">Personas que asistirán: 0</p>
+                    <!-- Contenedor para el canvas de Matter.js -->
+                    <div id="jar-canvas-container">
+                        <!-- El frasco visual dibujado encima del canvas -->
+                        <div class="glass-jar-overlay"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Espaciado al final -->
+            <div style="height: 50px;"></div>
+        </main>
+
+        <!-- Columna Derecha: Animación de hojas (Solo PC) -->
+        <aside class="side-column right-column" id="right-leaves">
+            <!-- Las hojas se generarán dinámicamente con JS -->
+        </aside>
+
+    </div>
+
+    <script src="script.js"></script>
+
+    <!-- Audio de Fondo -->
+    <audio id="bg-music" loop>
+        <source src="Assets/Musica/Song.mp3" type="audio/mpeg">
+    </audio>
+
+
+</body>
+
+</html>
